@@ -40,6 +40,7 @@ namespace StockQuoteService
 
         public void Start()
         {
+            RetrieveData();
             double interval = retreivalHourInterval * 3600000;
             Timer timer = new Timer(interval);
             timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
