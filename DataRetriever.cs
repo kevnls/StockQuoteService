@@ -54,6 +54,9 @@ namespace StockQuoteService
 
         public void RetrieveData()
         {
+            //empty quote array
+            quotesArrayList.Clear();
+            
             //fill quote array
             foreach (string symbol in symbolsArray)
             {
