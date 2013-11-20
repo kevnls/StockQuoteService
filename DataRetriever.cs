@@ -61,7 +61,7 @@ namespace StockQuoteService
             foreach (string symbol in symbolsArray)
             {
                 WebClient client = new WebClient();
-                string reply = client.DownloadString("http://finance.yahoo.com/d/quotes.csv?s=" + symbol + "&f=sd1c1pp2vjk");
+                string reply = client.DownloadString("http://finance.yahoo.com/d/quotes.csv?s=" + symbol + "&f=sd1opjk");
 
                 //clean up the string
                 reply = reply.Replace("\"", "");
@@ -69,18 +69,16 @@ namespace StockQuoteService
 
                 string[] valuesArray = reply.Split(',');
 
-                dynamic Object = new ExpandoObject();
+                dynamic expObject = new ExpandoObject();
 
-                Object.Symbol = valuesArray[0];
-                Object.LastTradeDate = valuesArray[1];
-                Object.Change = valuesArray[2];
-                Object.PreviousClose = valuesArray[3];
-                Object.PercentChange = valuesArray[4];
-                Object.Volume = valuesArray[5];
-                Object.FiftyTwoWeekLow = valuesArray[6];
-                Object.FiftyTwoWeekHigh = valuesArray[7];
+                expObject.Symbol = valuesArray[0];
+                expObject.LastTradeDate = valuesArray[1];
+                expObject.Open = valuesArray[2];
+                expObject.PreviousClose = valuesArray[3];
+                expObject.FiftyTwoWeekLow = valuesArray[4];
+                expObject.FiftyTwoWeekHigh = valuesArray[5];
 
-                quotesArrayList.Add(Object);
+                quotesArrayList.Add(expObject);
             }
         }
 
